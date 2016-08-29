@@ -81,26 +81,48 @@ class Vector(object):
         if divisor == 0:
             return 0;
         val=(numerator/divisor)
-        print "val %s" %val
         res =math.acos(val)* 180 / math.pi
         return res
 
-#quiz 3
-v =Vector ([7.887,4.138])
-w =Vector ([-8.802,6.776])
-vw1 = v.vTimesV(w)
-print "vw1 %s" % vw1
-v2 =Vector ([-5.955,-4.904,-1.874])
-w2=Vector ([-4.496,-8.755,7.103])
-vw2 = v2.vTimesV(w2)
-print "vw2 %s" % vw2
-v3 =Vector ([3.183,-7.627])
-w3=Vector ([-2.668,5.319])
-v3w3Degrees = v3.dotProd(w3)
-print "v3w3Degrees %s" % v3w3Degrees
-v4 =Vector ([7.35,0.221,5.188])
-w4= Vector ([2.751,8.259,3.985])
-v4w4Degrees = v4.dotProdDegrees(w4)
-print "v4w4Degrees %s" % v4w4Degrees
+    # isOrthogonal: solves dotProduct of 2 vectors.
+    # true if either vector is 0 vector or if the product is 90 degrees
+    def isOrthogonal (v1, v2):
+        ninetyDProd= v1.dotProdDegrees(v2)==90.0
+        zeroVectorV1= v1.vTimesV(v1)==0
+        zeroVectorV2=v2.vTimesV(v2)==0
+        return ninetyDProd or zeroVectorV2 or zeroVectorV1
+
+    # isParallel: solves dotProduct of 2 vectors.
+    # true if dotproduct is 0 or 180 degrees (parallel lines)
+    def isParallel (self, v):
+        dProdDegress= self.dotProdDegrees(v)
+        return dProdDegress==0 or dProdDegress== 180
+
+
+#quiz 4
+v5 =Vector ([-7.579,-7.88])
+w5 =Vector ([22.737,23.64])
+v5w5Degrees = v5.dotProdDegrees(w5)
+print "v5w5 is orthogonal: %s" %v5.isOrthogonal(w5)
+print "v5w5 is isParallel: %s" %v5.isParallel((w5))
+
+v6 =Vector ([-2.029,9.97,4.172])
+w6 =Vector ([-9.231,-6.639,-7.245])
+v6w6Degrees = v6.dotProdDegrees(w6)
+print "v6w6 is orthogonal: %s" %Vector.isOrthogonal(v6,w6)
+print "v6w6 is isParallel: %s" %v6.isParallel((w6))
+
+v7 =Vector ([-2.328,-7.284,-1.214])
+w7 =Vector ([-1.821,1.072,-2.94])
+v7w7Degrees = v7.dotProdDegrees(w7)
+print "v7w7 is orthogonal: %s" %Vector.isOrthogonal(v7,w7)
+print "v7w7 is isParallel: %s" %v7.isParallel((w7))
+
+v8 =Vector ([2.118,4.827])
+w8 =Vector ([0,0])
+v8w8Degrees = v8.dotProdDegrees(w8)
+print "v8w8 is orthogonal: %s" %Vector.isOrthogonal(v8,w8)
+print "v8w8 is isParallel: %s" %v8.isParallel(w8)
+
 
 
